@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ahmed Amer — Frontend Developer</title>
+    <meta
+      name="description"
+      content="Portfolio of Ahmed Amer, a Frontend Developer building structured, responsive, and calm interactive web applications."
+    />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:ital,wght@0,300..700;1,300..700&family=IBM+Plex+Mono:wght@400;500&family=Instrument+Serif:ital@0;1&display=swap"
+      rel="stylesheet"
+    />
+    <script>
+      (function () {
+        try {
+          var saved = sessionStorage.getItem('amer-theme');
+          if (saved === 'day' || saved === 'night') {
+            document.documentElement.dataset.theme = saved;
+            return;
+          }
+          var hour = new Date().getHours();
+          document.documentElement.dataset.theme =
+            hour >= 6 && hour < 18 ? 'day' : 'night';
+        } catch (e) {
+          document.documentElement.dataset.theme = 'day';
+        }
+      })();
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

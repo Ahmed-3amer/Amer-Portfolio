@@ -1,0 +1,111 @@
+:root {
+  --theme-duration: 900ms;
+  --theme-ease: cubic-bezier(0.22, 1, 0.36, 1);
+  color-scheme: light;
+}
+
+[data-theme='day'] {
+  color-scheme: light;
+
+  /* Window Sky & Celestial Light */
+  --sky-top: #c8d5df;
+  --sky-mid: #d7e0e4;
+  --sky-bottom: #e5e9e6;
+  --cloud-tint: #f6f2ea;
+  --celestial-glow: rgba(246, 226, 182, 0.42);
+
+  /* Wooden Desk Surfaces */
+  --wood-base: #c5af94;
+  --wood-deep: #ae9476;
+  --wood-highlight: #d5c2aa;
+  --wood-shadow: rgba(68, 52, 36, 0.24);
+
+  /* Architectural Timber Window Frame */
+  --window-wall-tint: rgba(54, 41, 29, 0.26);
+  --window-frame-outer: #594431;
+  --window-frame-inner: #785e46;
+  --window-mullion: #634d38;
+  --window-sill: #bfa78b;
+  --window-jamb-shadow: rgba(36, 26, 17, 0.42);
+  --glass-tint: rgba(255, 252, 245, 0.04);
+  --glass-sheen: rgba(255, 252, 244, 0.16);
+
+  /* Outdoor Architectural Stone / Plaster (Act II — Beyond the Window) */
+  --outdoor-base: #eae7e0;
+  --outdoor-secondary: #dfdbd2;
+  --outdoor-horizon: #d5dfe4;
+  --outdoor-shadow: rgba(50, 44, 36, 0.12);
+
+  /* Archival Paper & Folios */
+  --paper-primary: #f5f0e6;
+  --paper-secondary: #ebe4d5;
+  --paper-edge: rgba(30, 27, 24, 0.1);
+  --paper-shadow: rgba(54, 42, 30, 0.14);
+
+  /* Ink & Antique Brass Accent */
+  --ink-primary: #1e1b18;
+  --ink-secondary: #5e574e;
+  --ink-muted: #847b70;
+  --brass: #8a6a3b;
+  --brass-soft: rgba(138, 106, 59, 0.16);
+  --hairline: rgba(30, 27, 24, 0.14);
+
+  /* Window Light & Natural Cast Shadows */
+  --window-light: rgba(255, 248, 232, 0.36);
+  --window-shadow-tint: rgba(125, 105, 85, 0.18);
+  --desk-lamp-glow: rgba(255, 244, 222, 0.08);
+  --lamp-pool: rgba(255, 238, 206, 0);
+}
+
+[data-theme='night'] {
+  color-scheme: dark;
+
+  /* Window Sky & Celestial Light */
+  --sky-top: #11161f;
+  --sky-mid: #161d28;
+  --sky-bottom: #1b2331;
+  --cloud-tint: #2b3545;
+  --celestial-glow: rgba(220, 227, 236, 0.24);
+
+  /* Wooden Desk Surfaces */
+  --wood-base: #1b1714;
+  --wood-deep: #14110f;
+  --wood-highlight: #241e19;
+  --wood-shadow: rgba(0, 0, 0, 0.56);
+
+  /* Architectural Timber Window Frame */
+  --window-wall-tint: rgba(9, 7, 6, 0.56);
+  --window-frame-outer: #15110e;
+  --window-frame-inner: #27201a;
+  --window-mullion: #1d1814;
+  --window-sill: #241e19;
+  --window-jamb-shadow: rgba(0, 0, 0, 0.68);
+  --glass-tint: rgba(18, 24, 34, 0.08);
+  --glass-sheen: rgba(218, 228, 242, 0.07);
+
+  /* Outdoor Architectural Stone / Slate (Act II — Beyond the Window) */
+  --outdoor-base: #13171f;
+  --outdoor-secondary: #1a202b;
+  --outdoor-horizon: #1b2331;
+  --outdoor-shadow: rgba(0, 0, 0, 0.45);
+
+  /* Archival Paper & Folios */
+  --paper-primary: #231f1b;
+  --paper-secondary: #2c2722;
+  --paper-edge: rgba(236, 230, 218, 0.08);
+  --paper-shadow: rgba(0, 0, 0, 0.45);
+
+  /* Ink & Lamp-Lit Brushed Brass Accent */
+  --ink-primary: #ece6da;
+  --ink-secondary: #a39a8e;
+  --ink-muted: #787066;
+  --brass: #c69e63;
+  --brass-soft: rgba(198, 158, 99, 0.16);
+  --hairline: rgba(237, 231, 220, 0.12);
+
+  /* Moonlight & Focused Warm Desk Lamp */
+  --window-light: rgba(220, 227, 236, 0.08);
+  --window-shadow-tint: rgba(8, 11, 16, 0.48);
+  --desk-lamp-glow: rgba(226, 178, 112, 0.11);
+  --lamp-pool: rgba(214, 166, 102, 0.13);
+}

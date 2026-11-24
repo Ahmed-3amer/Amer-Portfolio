@@ -1,0 +1,248 @@
+@layer components {
+  .studio-wood-bg {
+    position: relative;
+    background-color: var(--wood-base);
+  }
+
+  .studio-wood-bg::before,
+  .studio-wood-bg::after {
+    content: '';
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+    transition: opacity var(--theme-duration) var(--theme-ease);
+  }
+
+  .studio-wood-bg::before {
+    background-image: url('/textures/wood-oak-day.webp');
+    opacity: 0.94;
+  }
+
+  .studio-wood-bg::after {
+    background-image: url('/textures/wood-walnut-night.webp');
+    opacity: 0;
+  }
+
+  [data-theme='night'] .studio-wood-bg::before {
+    opacity: 0;
+  }
+
+  [data-theme='night'] .studio-wood-bg::after {
+    opacity: 0.96;
+  }
+
+  .archival-paper {
+    position: relative;
+    background-color: var(--paper-primary);
+    transition:
+      background-color var(--theme-duration) var(--theme-ease),
+      color var(--theme-duration) var(--theme-ease),
+      border-color var(--theme-duration) var(--theme-ease);
+  }
+
+  .archival-paper::before,
+  .archival-paper::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+    transition: opacity var(--theme-duration) var(--theme-ease);
+  }
+
+  .archival-paper::before {
+    background-image: url('/textures/paper-cotton-day.webp');
+    opacity: 0.58;
+  }
+
+  .archival-paper::after {
+    background-image: url('/textures/paper-parchment-night.webp');
+    opacity: 0;
+  }
+
+  [data-theme='night'] .archival-paper::before {
+    opacity: 0;
+  }
+
+  [data-theme='night'] .archival-paper::after {
+    opacity: 0.14;
+  }
+
+  .archival-paper > * {
+    position: relative;
+    z-index: 1;
+  }
+
+  .archival-paper-secondary {
+    position: relative;
+    background-color: var(--paper-secondary);
+    transition:
+      background-color var(--theme-duration) var(--theme-ease),
+      color var(--theme-duration) var(--theme-ease),
+      border-color var(--theme-duration) var(--theme-ease);
+  }
+
+  .paper-elevation {
+    box-shadow:
+      0 24px 52px -20px var(--paper-shadow),
+      0 2px 6px var(--paper-edge);
+  }
+
+  /* Act II: Outdoor Architectural Stone & Plaster Space */
+  .outdoor-stone-surface {
+    position: relative;
+    background-color: var(--outdoor-base);
+    transition:
+      background-color var(--theme-duration) var(--theme-ease),
+      color var(--theme-duration) var(--theme-ease),
+      border-color var(--theme-duration) var(--theme-ease);
+  }
+
+  .outdoor-stone-surface::before,
+  .outdoor-stone-surface::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+    transition: opacity var(--theme-duration) var(--theme-ease);
+  }
+
+  .outdoor-stone-surface::before {
+    background-image: url('/textures/paper-cotton-day.webp');
+    opacity: 0.28;
+  }
+
+  .outdoor-stone-surface::after {
+    background-image: url('/textures/paper-parchment-night.webp');
+    opacity: 0;
+  }
+
+  [data-theme='night'] .outdoor-stone-surface::before {
+    opacity: 0;
+  }
+
+  [data-theme='night'] .outdoor-stone-surface::after {
+    opacity: 0.08;
+  }
+
+  .outdoor-stone-surface > * {
+    position: relative;
+    z-index: 1;
+  }
+
+  /* Still Photographic Sky Layers (zero idle drift) */
+  .sky-plate {
+    position: absolute;
+    inset: 0;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+    transition: opacity var(--theme-duration) var(--theme-ease);
+    pointer-events: none;
+  }
+
+  .sky-plate-day {
+    background-image: url('/textures/sky-day-clouds.webp');
+    opacity: 1;
+  }
+
+  .sky-plate-night {
+    background-image: url('/textures/sky-night-clouds.webp');
+    opacity: 0;
+  }
+
+  [data-theme='night'] .sky-plate-day {
+    opacity: 0;
+  }
+
+  [data-theme='night'] .sky-plate-night {
+    opacity: 1;
+  }
+
+  /* Realistic Angled Sunlight / Moonlight Window Cast Shadow */
+  .window-cast-shadow {
+    position: absolute;
+    inset: -8%;
+    pointer-events: none;
+    background-image: url('/textures/window-shadow-plate.webp');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: right top;
+    mix-blend-mode: multiply;
+    opacity: 0.34;
+    transition: opacity var(--theme-duration) var(--theme-ease);
+  }
+
+  [data-theme='night'] .window-cast-shadow {
+    mix-blend-mode: soft-light;
+    opacity: 0.14;
+  }
+
+  /* Subtle Warm Desk-Lamp Light Pool in Night Mode (zero neon) */
+  .night-desk-lamp {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background: radial-gradient(
+      ellipse 62% 58% at 24% 62%,
+      var(--lamp-pool) 0%,
+      rgba(214, 166, 102, 0.04) 44%,
+      transparent 74%
+    );
+    opacity: 0;
+    transition: opacity var(--theme-duration) var(--theme-ease);
+  }
+
+  [data-theme='night'] .night-desk-lamp {
+    opacity: 1;
+  }
+
+  /* Studio Interior Timber Wall surrounding the Window Portal */
+  .studio-timber-panel {
+    position: relative;
+    background-color: var(--wood-base);
+    overflow: hidden;
+  }
+
+  .studio-timber-panel::before,
+  .studio-timber-panel::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+    transition: opacity var(--theme-duration) var(--theme-ease);
+  }
+
+  .studio-timber-panel::before {
+    background-image: url('/textures/wood-oak-day.webp');
+    filter: brightness(0.95);
+    opacity: 1;
+  }
+
+  .studio-timber-panel::after {
+    background-image: url('/textures/wood-walnut-night.webp');
+    filter: brightness(0.92);
+    opacity: 0;
+  }
+
+  [data-theme='night'] .studio-timber-panel::before {
+    opacity: 0;
+  }
+
+  [data-theme='night'] .studio-timber-panel::after {
+    opacity: 1;
+  }
+}
