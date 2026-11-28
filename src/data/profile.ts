@@ -32,7 +32,7 @@ export const PROFILE = {
   role: 'Frontend Developer',
   heroHeadline: 'Interfaces built with structure, clarity, and quiet precision.',
   heroIntro:
-    'I build modern, responsive web applications in React, Next.js, and TypeScript—turning complex clinical, corporate, and commercial workflows into calm, reliable experiences.',
+    'I turn ideas and everyday workflows into clear, responsive web experiences that feel natural from the very first click.',
   teaserNote:
     'Good frontend work feels natural before you notice the craft behind it. From bilingual enterprise platforms and laboratory workflows to clean architectural portfolios, every interface is shaped around visual hierarchy, responsive structure, and steady performance.',
   contact: {

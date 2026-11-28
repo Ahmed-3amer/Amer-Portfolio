@@ -7,7 +7,6 @@ import {
   useRef,
   type ReactNode,
 } from 'react';
-import { useLocation } from 'react-router-dom';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import Lenis from 'lenis';
@@ -24,7 +23,6 @@ const SmoothScrollContext = createContext<SmoothScrollContextValue | null>(null)
 
 export function SmoothScrollProvider({ children }: { children: ReactNode }) {
   const lenisRef = useRef<Lenis | null>(null);
-  const { pathname } = useLocation();
 
   useEffect(() => {
     const prefersReducedMotion = window.matchMedia(
@@ -37,10 +35,11 @@ export function SmoothScrollProvider({ children }: { children: ReactNode }) {
     }
 
     const lenis = new Lenis({
-      duration: 1.18,
+      duration: 0.92,
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
       smoothWheel: true,
-      touchMultiplier: 1.5,
+      wheelMultiplier: 1.05,
+      touchMultiplier: 1.4,
     });
 
     lenisRef.current = lenis;
@@ -60,18 +59,6 @@ export function SmoothScrollProvider({ children }: { children: ReactNode }) {
       lenisRef.current = null;
     };
   }, []);
-
-  useEffect(() => {
-    if (lenisRef.current) {
-      lenisRef.current.scrollTo(0, { immediate: true });
-    } else {
-      window.scrollTo(0, 0);
-    }
-    const frameId = requestAnimationFrame(() => {
-      ScrollTrigger.refresh();
-    });
-    return () => cancelAnimationFrame(frameId);
-  }, [pathname]);
 
   const stopScroll = useCallback(() => {
     lenisRef.current?.stop();

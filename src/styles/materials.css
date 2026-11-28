@@ -14,6 +14,8 @@
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center center;
+    transform: translate3d(0, 0, 0);
+    backface-visibility: hidden;
     transition: opacity var(--theme-duration) var(--theme-ease);
   }
 
@@ -244,5 +246,86 @@
 
   [data-theme='night'] .studio-timber-panel::after {
     opacity: 1;
+  }
+
+  /* Zero-FOUC initial state for scroll-staged & intro-choreographed layers */
+  .hero-staged {
+    opacity: 0;
+  }
+
+  /* Photorealistic Studio Furniture — GPU-fast color matrix only (zero expensive real-time drop-shadow blur) */
+  .studio-furniture {
+    filter: brightness(0.98) contrast(1.02);
+    transition: filter var(--theme-duration) var(--theme-ease);
+  }
+
+  [data-theme='night'] .studio-furniture {
+    filter: brightness(0.74) contrast(1.06);
+  }
+
+  .studio-tool {
+    filter: brightness(0.99) contrast(1.02);
+    transition: filter var(--theme-duration) var(--theme-ease);
+  }
+
+  [data-theme='night'] .studio-tool {
+    filter: brightness(0.86) contrast(1.06);
+  }
+
+  /* Lightweight Grounded Contact Shadow beneath Desk & Chair (pure radial gradient, 60fps) */
+  .desk-ground-shadow {
+    pointer-events: none;
+    background: radial-gradient(
+      ellipse 52% 48% at 50% 50%,
+      rgba(20, 14, 8, 0.34) 0%,
+      rgba(20, 14, 8, 0.14) 55%,
+      transparent 78%
+    );
+  }
+
+  [data-theme='night'] .desk-ground-shadow {
+    background: radial-gradient(
+      ellipse 52% 48% at 50% 50%,
+      rgba(0, 0, 0, 0.62) 0%,
+      rgba(0, 0, 0, 0.25) 55%,
+      transparent 78%
+    );
+  }
+
+  /* Dynamic Night Lamp Light Cone — pure alpha radial gradient (zero mix-blend-mode full-screen pass) */
+  .lamp-beam-night {
+    pointer-events: none;
+    background: radial-gradient(
+      circle at 24% 52%,
+      rgba(232, 186, 122, 0.22) 0%,
+      rgba(218, 168, 102, 0.09) 28%,
+      rgba(218, 168, 102, 0.025) 48%,
+      transparent 66%
+    );
+    opacity: 0;
+  }
+
+  [data-theme='day'] .lamp-beam-night {
+    display: none;
+  }
+
+  /* Soft Warm-Neutral Screen Luminance pooling onto the desk mat in Night Mode (pure alpha, zero blend stall) */
+  .laptop-screen-glow-night {
+    background: radial-gradient(
+      ellipse 56% 52% at 50% 18%,
+      rgba(227, 134, 96, 0.18) 0%,
+      rgba(180, 170, 165, 0.06) 44%,
+      transparent 72%
+    );
+    opacity: 0;
+  }
+
+  [data-theme='day'] .laptop-screen-glow-night {
+    display: none;
+  }
+
+  .hero-perspective {
+    perspective: 1150px;
+    transform-style: preserve-3d;
   }
 }

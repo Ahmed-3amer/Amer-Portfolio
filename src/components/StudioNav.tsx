@@ -40,15 +40,22 @@ export function StudioNav() {
     <>
       <nav
         aria-label="Primary studio navigation"
-        className="fixed top-6 left-6 z-40 flex items-center gap-5 md:top-8 md:left-10 md:gap-8"
+        className="fixed top-5 left-5 z-40 flex flex-col items-start gap-3 md:top-7 md:left-10 md:flex-row md:items-center md:gap-7"
       >
         <Link
           to="/"
-          className="font-mono-tech surface-transition text-xs font-medium tracking-[0.22em] uppercase hover:opacity-75"
+          className="font-mono-tech surface-transition group inline-flex items-baseline gap-2 text-[17px] font-medium tracking-[0.16em] uppercase hover:opacity-80 md:gap-2.5 md:text-[23px] md:tracking-[0.17em]"
           style={{ color: 'var(--ink-primary)' }}
         >
-          {PROFILE.name}
+          <span>Ahmed</span>
+          <span style={{ color: 'var(--brass)' }}>Amer</span>
         </Link>
+
+        <span
+          aria-hidden="true"
+          className="hidden h-4 w-px md:inline-block"
+          style={{ backgroundColor: 'var(--hairline)' }}
+        />
 
         <div className="hidden items-center gap-6 md:flex">
           {NAV_ITEMS.map((item) => (
@@ -93,65 +100,83 @@ export function StudioNav() {
         <button
           type="button"
           onClick={toggleMobileMenu}
-          aria-label={mobileOpen ? 'Close menu' : 'Open menu'}
+          aria-label={mobileOpen ? 'Close navigation menu' : 'Open navigation menu'}
           aria-expanded={mobileOpen}
-          className="font-mono-tech inline-flex cursor-pointer items-center gap-1.5 text-[11px] tracking-[0.18em] uppercase md:hidden"
-          style={{ color: 'var(--ink-primary)' }}
+          className="archival-paper surface-transition inline-flex h-11 w-11 cursor-pointer items-center justify-center border md:hidden"
+          style={{
+            color: 'var(--ink-primary)',
+            borderColor: mobileOpen ? 'var(--brass)' : 'var(--hairline)',
+            boxShadow: '0 8px 20px -8px var(--paper-shadow)',
+          }}
         >
           {mobileOpen ? (
-            <X size={16} strokeWidth={1.6} aria-hidden="true" />
+            <X size={22} strokeWidth={1.75} aria-hidden="true" />
           ) : (
-            <Menu size={16} strokeWidth={1.6} aria-hidden="true" />
+            <Menu size={22} strokeWidth={1.75} aria-hidden="true" />
           )}
-          <span>{mobileOpen ? 'Close' : 'Index'}</span>
         </button>
       </nav>
 
       {mobileOpen && (
         <div
-          className="archival-paper fixed inset-0 z-30 flex flex-col justify-between px-6 pt-28 pb-10 md:hidden"
+          className="archival-paper fixed inset-0 z-30 flex flex-col justify-between px-6 pt-32 pb-10 md:hidden"
           style={{ color: 'var(--ink-primary)' }}
         >
-          <div className="flex flex-col gap-5">
+          <div className="flex flex-col">
             <NavLink
               to="/"
               onClick={() => setMobileOpen(false)}
-              className="font-display border-b pb-3 text-4xl"
-              style={{ borderColor: 'var(--hairline)' }}
+              className="font-mono-tech flex items-baseline justify-between border-b py-4 text-sm font-medium tracking-[0.22em] uppercase"
+              style={({ isActive }) => ({
+                borderColor: 'var(--hairline)',
+                color: isActive ? 'var(--brass)' : 'var(--ink-primary)',
+              })}
             >
-              Home
+              <span>Home</span>
+              <span className="text-[10px]" style={{ color: 'var(--ink-muted)' }}>
+                00
+              </span>
             </NavLink>
-            {NAV_ITEMS.map((item) => (
+            {NAV_ITEMS.map((item, idx) => (
               <NavLink
                 key={item.to}
                 to={item.to}
                 onClick={() => setMobileOpen(false)}
-                className="font-display border-b pb-3 text-4xl"
-                style={{ borderColor: 'var(--hairline)' }}
+                className="font-mono-tech flex items-baseline justify-between border-b py-4 text-sm font-medium tracking-[0.22em] uppercase"
+                style={({ isActive }) => ({
+                  borderColor: 'var(--hairline)',
+                  color: isActive ? 'var(--brass)' : 'var(--ink-primary)',
+                })}
               >
-                {item.label}
+                <span>{item.label}</span>
+                <span className="text-[10px]" style={{ color: 'var(--ink-muted)' }}>
+                  0{idx + 1}
+                </span>
               </NavLink>
             ))}
             <button
               type="button"
               onClick={handleOpenCv}
-              className="font-display cursor-pointer border-b pb-3 text-left text-4xl italic"
+              className="font-mono-tech flex cursor-pointer items-baseline justify-between gap-4 border-b py-4 text-left text-sm font-medium tracking-[0.22em] uppercase"
               style={{ borderColor: 'var(--hairline)', color: 'var(--brass)' }}
             >
-              Preview &amp; Download CV
+              <span>Preview CV</span>
+              <span className="shrink-0 text-[10px]" style={{ color: 'var(--brass)' }}>
+                PDF / DOCX
+              </span>
             </button>
           </div>
 
           <div className="flex flex-col gap-1.5">
             <p
-              className="font-mono-tech text-[11px] tracking-[0.16em] uppercase"
+              className="font-mono-tech text-[10px] tracking-[0.18em] uppercase"
               style={{ color: 'var(--ink-muted)' }}
             >
               Direct Correspondence
             </p>
             <a
               href={`mailto:${PROFILE.contact.email}`}
-              className="text-sm"
+              className="font-mono-tech text-xs"
               style={{ color: 'var(--ink-secondary)' }}
             >
               {PROFILE.contact.email}

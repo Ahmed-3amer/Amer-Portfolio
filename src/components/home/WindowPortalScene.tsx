@@ -1,6 +1,5 @@
 import { useEffect, useRef } from 'react';
 import gsap from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 export function WindowPortalScene() {
   const triggerRef = useRef<HTMLDivElement>(null);
@@ -38,7 +37,7 @@ export function WindowPortalScene() {
           start: 'top top',
           end: isMobile ? '+=125%' : '+=170%',
           pin: true,
-          scrub: 0.85,
+          scrub: 0.4,
           anticipatePin: 1,
           invalidateOnRefresh: true,
         },
@@ -133,12 +132,7 @@ export function WindowPortalScene() {
       }
     }, triggerRef);
 
-    const frameId = requestAnimationFrame(() => {
-      ScrollTrigger.refresh();
-    });
-
     return () => {
-      cancelAnimationFrame(frameId);
       ctx.revert();
     };
   }, []);

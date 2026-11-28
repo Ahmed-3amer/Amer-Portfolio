@@ -1,6 +1,6 @@
 import { useEffect, useRef } from 'react';
 import gsap from 'gsap';
-import { Download, ExternalLink, FileText, X } from 'lucide-react';
+import { Download, FileText, X } from 'lucide-react';
 import { useCvModal } from '@/context/CvModalContext';
 import { PROFILE } from '@/data/profile';
 
@@ -119,21 +119,6 @@ export function CvModal() {
             >
               <Download size={14} strokeWidth={1.75} aria-hidden="true" />
               Download Word
-            </a>
-
-            <a
-              href={PROFILE.cv.pdfUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="font-mono-tech surface-transition inline-flex items-center gap-1.5 border px-3 py-2 text-xs tracking-[0.12em] uppercase hover:opacity-80"
-              style={{
-                borderColor: 'var(--hairline)',
-                color: 'var(--ink-secondary)',
-              }}
-              aria-label="Open CV PDF in new browser tab"
-            >
-              <ExternalLink size={14} strokeWidth={1.7} aria-hidden="true" />
-              <span className="hidden sm:inline">Open Tab</span>
             </a>
 
             <button

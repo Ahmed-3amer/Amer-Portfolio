@@ -36,19 +36,21 @@
   --outdoor-horizon: #d5dfe4;
   --outdoor-shadow: rgba(50, 44, 36, 0.12);
 
-  /* Archival Paper & Folios */
-  --paper-primary: #f5f0e6;
-  --paper-secondary: #ebe4d5;
-  --paper-edge: rgba(30, 27, 24, 0.1);
-  --paper-shadow: rgba(54, 42, 30, 0.14);
+  /* Archival Paper & Folios (Fresh Gallery Tone) */
+  --paper-primary: #faf7f1;
+  --paper-secondary: #f1ebe0;
+  --paper-edge: rgba(26, 24, 22, 0.1);
+  --paper-shadow: rgba(54, 42, 30, 0.13);
 
-  /* Ink & Antique Brass Accent */
-  --ink-primary: #1e1b18;
-  --ink-secondary: #5e574e;
-  --ink-muted: #847b70;
-  --brass: #8a6a3b;
-  --brass-soft: rgba(138, 106, 59, 0.16);
-  --hairline: rgba(30, 27, 24, 0.14);
+  /* Ink & Vibrant Studio Terracotta Accent (Refined, Youthful, Zero Neon) */
+  --ink-primary: #1a1816;
+  --ink-secondary: #58524a;
+  --ink-muted: #7f776d;
+  --brass: #c24d27;
+  --brass-soft: rgba(194, 77, 39, 0.16);
+  --accent: var(--brass);
+  --accent-soft: var(--brass-soft);
+  --hairline: rgba(26, 24, 22, 0.13);
 
   /* Window Light & Natural Cast Shadows */
   --window-light: rgba(255, 248, 232, 0.36);
@@ -89,19 +91,21 @@
   --outdoor-horizon: #1b2331;
   --outdoor-shadow: rgba(0, 0, 0, 0.45);
 
-  /* Archival Paper & Folios */
-  --paper-primary: #231f1b;
-  --paper-secondary: #2c2722;
-  --paper-edge: rgba(236, 230, 218, 0.08);
-  --paper-shadow: rgba(0, 0, 0, 0.45);
+  /* Archival Paper & Folios (Clean Modern Studio Charcoal) */
+  --paper-primary: #1e1d20;
+  --paper-secondary: #27262a;
+  --paper-edge: rgba(242, 239, 233, 0.08);
+  --paper-shadow: rgba(0, 0, 0, 0.44);
 
-  /* Ink & Lamp-Lit Brushed Brass Accent */
-  --ink-primary: #ece6da;
-  --ink-secondary: #a39a8e;
-  --ink-muted: #787066;
-  --brass: #c69e63;
-  --brass-soft: rgba(198, 158, 99, 0.16);
-  --hairline: rgba(237, 231, 220, 0.12);
+  /* Ink & Refined Warm Studio Coral Accent (Lively, Modern, Zero Neon) */
+  --ink-primary: #f2efe9;
+  --ink-secondary: #a8a39b;
+  --ink-muted: #7c7770;
+  --brass: #e36d47;
+  --brass-soft: rgba(227, 109, 71, 0.18);
+  --accent: var(--brass);
+  --accent-soft: var(--brass-soft);
+  --hairline: rgba(242, 239, 233, 0.12);
 
   /* Moonlight & Focused Warm Desk Lamp */
   --window-light: rgba(220, 227, 236, 0.08);
