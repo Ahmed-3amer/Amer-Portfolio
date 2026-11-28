@@ -122,7 +122,7 @@ export function ContactPage() {
               </p>
               <a
                 href={`mailto:${PROFILE.contact.email}`}
-                className="font-identity mt-2.5 block text-[clamp(1.25rem,3vw,2.55rem)] font-semibold tracking-[-0.02em] break-all transition-opacity hover:opacity-75"
+                className="font-identity mt-2.5 block text-[clamp(1.02rem,4.1vw,2.45rem)] font-semibold tracking-[-0.02em] whitespace-nowrap transition-opacity hover:opacity-75"
                 style={{ color: 'var(--ink-primary)' }}
               >
                 {PROFILE.contact.email}

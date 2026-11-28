@@ -1,4 +1,5 @@
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
+import gsap from 'gsap';
 import { ArrowUp, ArrowUpRight, Check, Copy, FileText } from 'lucide-react';
 import { useCvModal } from '@/context/CvModalContext';
 import { useSmoothScroll } from '@/context/SmoothScrollContext';
@@ -6,8 +7,38 @@ import { PROFILE } from '@/data/profile';
 
 export function CorrespondenceScene() {
   const [copied, setCopied] = useState(false);
+  const footerRef = useRef<HTMLElement>(null);
   const { openCvModal } = useCvModal();
   const { scrollTo } = useSmoothScroll();
+
+  useEffect(() => {
+    const prefersReducedMotion = window.matchMedia(
+      '(prefers-reduced-motion: reduce)',
+    ).matches;
+    if (prefersReducedMotion || !footerRef.current) return;
+
+    const ctx = gsap.context(() => {
+      gsap.fromTo(
+        '[data-correspondence-reveal]',
+        { y: 24, opacity: 0 },
+        {
+          y: 0,
+          opacity: 1,
+          duration: 0.8,
+          stagger: 0.1,
+          ease: 'power3.out',
+          force3D: true,
+          scrollTrigger: {
+            trigger: footerRef.current,
+            start: 'top 82%',
+            once: true,
+          },
+        },
+      );
+    }, footerRef);
+
+    return () => ctx.revert();
+  }, []);
 
   const handleCopyEmail = async () => {
     try {
@@ -29,6 +60,7 @@ export function CorrespondenceScene() {
 
   return (
     <footer
+      ref={footerRef}
       aria-label="Direct correspondence and studio closing"
       className="relative w-full overflow-hidden pt-20 pb-10 md:pt-28 md:pb-12"
     >
@@ -42,7 +74,7 @@ export function CorrespondenceScene() {
 
       <div className="relative z-10 w-full px-6 md:px-14">
         {/* Correspondence Headline */}
-        <div className="max-w-4xl">
+        <div data-correspondence-reveal className="max-w-4xl">
           <p
             className="font-mono-tech text-[11px] font-medium tracking-[0.24em] uppercase"
             style={{ color: 'var(--brass)' }}
@@ -60,6 +92,7 @@ export function CorrespondenceScene() {
 
         {/* Monumental Direct Email + Copy Action */}
         <div
+          data-correspondence-reveal
           className="archival-paper paper-elevation mt-12 border"
           style={{ borderColor: 'var(--hairline)' }}
         >
@@ -76,7 +109,7 @@ export function CorrespondenceScene() {
               </p>
               <a
                 href={`mailto:${PROFILE.contact.email}`}
-                className="font-identity mt-1.5 inline-block text-[clamp(1.25rem,3vw,2.35rem)] font-semibold tracking-[-0.02em] break-all transition-opacity hover:opacity-75"
+                className="font-identity mt-1.5 inline-block text-[clamp(1.02rem,4.1vw,2.35rem)] font-semibold tracking-[-0.02em] whitespace-nowrap transition-opacity hover:opacity-75"
                 style={{ color: 'var(--ink-primary)' }}
               >
                 {PROFILE.contact.email}
@@ -140,7 +173,6 @@ export function CorrespondenceScene() {
                 size={16}
                 strokeWidth={1.65}
                 style={{ color: 'var(--brass)' }}
-                className="transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
                 aria-hidden="true"
               />
             </a>
@@ -149,7 +181,7 @@ export function CorrespondenceScene() {
               href={PROFILE.contact.linkedin}
               target="_blank"
               rel="noopener noreferrer"
-              className="group flex items-center justify-between px-6 py-6 transition-opacity hover:opacity-75 md:px-8"
+              className="flex items-center justify-between px-6 py-6 transition-opacity hover:opacity-75 md:px-8"
               style={{ borderColor: 'var(--hairline)' }}
             >
               <div>
@@ -170,7 +202,6 @@ export function CorrespondenceScene() {
                 size={16}
                 strokeWidth={1.65}
                 style={{ color: 'var(--brass)' }}
-                className="transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
                 aria-hidden="true"
               />
             </a>
@@ -228,7 +259,6 @@ export function CorrespondenceScene() {
               size={13}
               strokeWidth={1.7}
               style={{ color: 'var(--brass)' }}
-              className="transition-transform duration-300 group-hover:-translate-y-0.5"
               aria-hidden="true"
             />
           </button>

@@ -159,7 +159,6 @@ export function OpeningNoteScene() {
                 size={15}
                 strokeWidth={1.65}
                 style={{ color: 'var(--brass)' }}
-                className="transition-transform duration-300 group-hover:translate-x-1"
                 aria-hidden="true"
               />
             </Link>

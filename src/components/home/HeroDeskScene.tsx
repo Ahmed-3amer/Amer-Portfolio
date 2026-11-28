@@ -659,7 +659,7 @@ export function HeroDeskScene() {
         {/* Core Studio Stage: Left Interactive Workstation + Right Enlarged 4-Sided Window */}
         <div className="relative grid min-h-0 flex-1 grid-cols-1 gap-3 lg:grid-cols-12 lg:gap-6">
           {/* LEFT STAGE (7 cols on desktop): Front-On Larger Creative Workstation + 3D Flying Papers */}
-          <div className="hero-perspective relative z-20 flex h-full min-h-0 flex-col justify-start pt-[28svh] md:pt-[27svh] lg:col-span-7 lg:pt-[76px]">
+          <div className="hero-perspective hero-folio-stack relative z-20 flex h-full min-h-0 flex-col justify-start pt-[28svh] md:pt-[27svh] lg:col-span-7 lg:pt-[76px]">
             {/* Initial Quiet Studio Entrance Prompt (animated with crisp 1.15s paper-edge choreography at scrollY = 0) */}
             <div
               ref={introCueRef}
@@ -723,7 +723,7 @@ export function HeroDeskScene() {
               aria-hidden="true"
               className="pointer-events-none absolute right-0 bottom-0 left-0 z-10 flex items-end justify-center lg:justify-start lg:pl-0"
             >
-              <div className="relative w-[98%] max-w-[580px] lg:w-[min(99%,84svh)] lg:max-w-[780px]">
+              <div className="hero-workstation-stage relative w-[98%] max-w-[580px] lg:w-[min(99%,84svh)] lg:max-w-[780px]">
                 {/* Lightweight Grounded Contact Shadow beneath Desk & Chair (zero drop-shadow filter cost) */}
                 <div
                   ref={deskShadowRef}

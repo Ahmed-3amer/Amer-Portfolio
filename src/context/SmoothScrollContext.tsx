@@ -52,7 +52,31 @@ export function SmoothScrollProvider({ children }: { children: ReactNode }) {
     gsap.ticker.add(onTick);
     gsap.ticker.lagSmoothing(0);
 
+    // Pause smooth scroll engine when browser tab is hidden to save CPU & battery
+    const handleVisibilityChange = () => {
+      if (document.hidden) {
+        lenis.stop();
+      } else {
+        lenis.start();
+      }
+    };
+
+    // Debounced ScrollTrigger recalculation on viewport resize / mobile orientation switch
+    let resizeTimer: number | undefined;
+    const handleResize = () => {
+      window.clearTimeout(resizeTimer);
+      resizeTimer = window.setTimeout(() => {
+        ScrollTrigger.refresh();
+      }, 180);
+    };
+
+    document.addEventListener('visibilitychange', handleVisibilityChange);
+    window.addEventListener('resize', handleResize, { passive: true });
+
     return () => {
+      window.clearTimeout(resizeTimer);
+      document.removeEventListener('visibilitychange', handleVisibilityChange);
+      window.removeEventListener('resize', handleResize);
       gsap.ticker.remove(onTick);
       lenis.off('scroll', ScrollTrigger.update);
       lenis.destroy();

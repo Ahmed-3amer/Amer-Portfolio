@@ -20,7 +20,6 @@ function ChapterFolioActions({ project }: { project: Project }) {
         <ArrowRight
           size={13}
           strokeWidth={1.7}
-          className="transition-transform duration-300 group-hover:translate-x-1"
           aria-hidden="true"
         />
       </Link>
@@ -891,7 +890,6 @@ export function OutdoorWorkScene() {
                   size={14}
                   strokeWidth={1.7}
                   style={{ color: 'var(--brass)' }}
-                  className="transition-transform duration-300 group-hover:translate-x-1"
                   aria-hidden="true"
                 />
               </Link>

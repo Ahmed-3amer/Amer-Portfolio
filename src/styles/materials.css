@@ -328,4 +328,15 @@
     perspective: 1150px;
     transform-style: preserve-3d;
   }
+
+  /* Short-viewport laptops (e.g. 1280x720 / 1366x768): preserve clean vertical gap above live laptop screen */
+  @media (min-width: 1024px) and (max-height: 790px) {
+    .hero-folio-stack {
+      padding-top: 62px !important;
+    }
+
+    .hero-workstation-stage {
+      width: min(92%, 70svh) !important;
+    }
+  }
 }

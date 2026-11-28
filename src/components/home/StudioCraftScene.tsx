@@ -7,6 +7,9 @@ import { ABOUT_CONTENT } from '@/data/profile';
 
 export function StudioCraftScene() {
   const sectionRef = useRef<HTMLElement>(null);
+  const thresholdRef = useRef<HTMLDivElement>(null);
+  const sheetRef = useRef<HTMLDivElement>(null);
+  const shadowRef = useRef<HTMLDivElement>(null);
   const { openCvModal } = useCvModal();
 
   useEffect(() => {
@@ -16,6 +19,65 @@ export function StudioCraftScene() {
     if (prefersReducedMotion) return;
 
     const ctx = gsap.context(() => {
+      // Return-Indoors Camera Pull-Back: smoothly settles back onto the studio desk from the open sky
+      if (shadowRef.current) {
+        gsap.fromTo(
+          shadowRef.current,
+          { x: -24 },
+          {
+            x: 18,
+            ease: 'none',
+            force3D: true,
+            scrollTrigger: {
+              trigger: sectionRef.current,
+              start: 'top bottom',
+              end: 'bottom top',
+              scrub: 0.4,
+              invalidateOnRefresh: true,
+            },
+          },
+        );
+      }
+
+      if (thresholdRef.current) {
+        gsap.fromTo(
+          thresholdRef.current,
+          { y: 28, opacity: 0 },
+          {
+            y: 0,
+            opacity: 1,
+            duration: 0.8,
+            ease: 'power3.out',
+            force3D: true,
+            scrollTrigger: {
+              trigger: thresholdRef.current,
+              start: 'top 86%',
+              once: true,
+            },
+          },
+        );
+      }
+
+      if (sheetRef.current) {
+        gsap.fromTo(
+          sheetRef.current,
+          { y: 36, scale: 0.986 },
+          {
+            y: 0,
+            scale: 1,
+            ease: 'none',
+            force3D: true,
+            scrollTrigger: {
+              trigger: sheetRef.current,
+              start: 'top 95%',
+              end: 'top 38%',
+              scrub: 0.4,
+              invalidateOnRefresh: true,
+            },
+          },
+        );
+      }
+
       gsap.fromTo(
         '[data-craft-row]',
         { y: 24, opacity: 0 },
@@ -46,14 +108,18 @@ export function StudioCraftScene() {
     >
       {/* Indoor Wooden Desk Return Atmosphere */}
       <div
+        ref={shadowRef}
         aria-hidden="true"
-        className="window-cast-shadow"
+        className="window-cast-shadow will-change-transform"
         style={{ opacity: 0.24 }}
       />
       <div aria-hidden="true" className="night-desk-lamp" />
 
       {/* Indoor Threshold Caption sitting directly on the oak / walnut wood */}
-      <div className="relative z-10 flex flex-wrap items-end justify-between gap-6 px-6 pb-10 md:px-14 md:pb-12">
+      <div
+        ref={thresholdRef}
+        className="relative z-10 flex flex-wrap items-end justify-between gap-6 px-6 pb-10 md:px-14 md:pb-12"
+      >
         <div>
           <p
             className="font-mono-tech text-[11px] font-medium tracking-[0.24em] uppercase"
@@ -71,7 +137,7 @@ export function StudioCraftScene() {
 
         <Link
           to="/about"
-          className="font-mono-tech group inline-flex items-center gap-2.5 border-b pb-1 text-xs tracking-[0.18em] uppercase transition-opacity hover:opacity-75"
+          className="font-mono-tech inline-flex items-center gap-2.5 border-b pb-1 text-xs tracking-[0.18em] uppercase transition-opacity hover:opacity-75"
           style={{
             color: 'var(--ink-primary)',
             borderColor: 'var(--brass)',
@@ -82,7 +148,6 @@ export function StudioCraftScene() {
             size={14}
             strokeWidth={1.7}
             style={{ color: 'var(--brass)' }}
-            className="transition-transform duration-300 group-hover:translate-x-1"
             aria-hidden="true"
           />
         </Link>
@@ -90,7 +155,8 @@ export function StudioCraftScene() {
 
       {/* Full-Bleed Edge-to-Edge Archival Specification Sheet */}
       <div
-        className="archival-paper paper-elevation relative z-10 w-full border-y"
+        ref={sheetRef}
+        className="archival-paper paper-elevation relative z-10 w-full border-y will-change-transform"
         style={{ borderColor: 'var(--hairline)' }}
       >
         {/* Part A: 4 Grounded Working Principles */}

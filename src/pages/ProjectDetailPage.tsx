@@ -12,6 +12,7 @@ export function ProjectDetailPage() {
   const { slug } = useParams<{ slug: string }>();
   const project = slug ? getProjectBySlug(slug) : undefined;
   const pageRef = useRef<HTMLDivElement>(null);
+  const plateImgRef = useRef<HTMLImageElement>(null);
 
   useLayoutEffect(() => {
     if (!project) return;
@@ -33,6 +34,71 @@ export function ProjectDetailPage() {
           force3D: true,
         },
       );
+
+      // Subtle scroll-scrubbed camera focus zoom on the 16:10 interface showcase plate
+      if (plateImgRef.current) {
+        gsap.fromTo(
+          plateImgRef.current,
+          { scale: 1.055 },
+          {
+            scale: 1,
+            ease: 'none',
+            force3D: true,
+            scrollTrigger: {
+              trigger: plateImgRef.current.parentElement ?? plateImgRef.current,
+              start: 'top bottom',
+              end: 'bottom top',
+              scrub: 0.4,
+              invalidateOnRefresh: true,
+            },
+          },
+        );
+      }
+
+      // Staggered scroll reveal for Key Engineering Highlights rows
+      const highlightRows = gsap.utils.toArray<HTMLElement>(
+        '[data-highlight-item]',
+      );
+      if (highlightRows.length > 0) {
+        gsap.fromTo(
+          highlightRows,
+          { opacity: 0, y: 18 },
+          {
+            opacity: 1,
+            y: 0,
+            duration: 0.65,
+            stagger: 0.08,
+            ease: 'power3.out',
+            force3D: true,
+            scrollTrigger: {
+              trigger: highlightRows[0],
+              start: 'top 86%',
+              once: true,
+            },
+          },
+        );
+      }
+
+      // Calm entrance for Next Case Study continuation band
+      const nextBand = pageRef.current?.querySelector('[data-next-dossier]');
+      if (nextBand) {
+        gsap.fromTo(
+          nextBand,
+          { opacity: 0, y: 24 },
+          {
+            opacity: 1,
+            y: 0,
+            duration: 0.75,
+            ease: 'power3.out',
+            force3D: true,
+            scrollTrigger: {
+              trigger: nextBand,
+              start: 'top 88%',
+              once: true,
+            },
+          },
+        );
+      }
     }, pageRef);
 
     return () => ctx.revert();
@@ -144,12 +210,13 @@ export function ProjectDetailPage() {
           }}
         >
           <img
+            ref={plateImgRef}
             src={project.screenshotPath}
             alt={`${project.title} live interface preview`}
             width={1440}
             height={900}
             decoding="async"
-            className="block aspect-16/10 w-full object-cover object-top"
+            className="block aspect-16/10 w-full object-cover object-top will-change-transform"
           />
         </div>
       </section>
@@ -301,6 +368,7 @@ export function ProjectDetailPage() {
                 {project.highlights.map((highlight, idx) => (
                   <li
                     key={idx}
+                    data-highlight-item
                     className="grid grid-cols-1 gap-2 py-5 sm:grid-cols-[56px_1fr] sm:items-baseline"
                     style={{ borderColor: 'var(--hairline)' }}
                   >
@@ -327,6 +395,7 @@ export function ProjectDetailPage() {
       {/* Full-Bleed Next Case Study Continuation Band */}
       <footer className="relative z-10 w-full px-6 py-16 md:px-14 md:py-20">
         <div
+          data-next-dossier
           className="archival-paper paper-elevation grid w-full grid-cols-1 items-center gap-8 border p-6 md:p-10 lg:grid-cols-12"
           style={{ borderColor: 'var(--hairline)' }}
         >
